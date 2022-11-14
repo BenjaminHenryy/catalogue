@@ -40,7 +40,7 @@ DELETE FROM film WHERE slug LIKE 't%'
 -Récupérez tous les champs des utilisateurs qui ont mis des commentaires. Il ne doit pas avoir de doublons -
  un même utilisateur ne doit apparaître qu'une seule fois
 
-SELECT DISTINCT * FROM user
+SELECT DISTINCT user.* FROM commentaire, user WHERE user.id = commentaire.id_user
 
 7]
 -Récupérez tous les champs des films de la catégorie dont l'ID est 51
@@ -61,4 +61,4 @@ SELECT * FROM film WHERE MONTH (date_sortie) = 06;
 -Récupérez tous les utilisateurs dont le role est 1 et qui ont postés des commentaires.
  Il ne doit pas y avoir de doublon.
 
-SELECT DISTINCT * FROM user WHERE role = 1;
+SELECT DISTINCT user.* FROM user INNER JOIN commentaire ON commentaire.id_user=user.id WHERE user.role=1
