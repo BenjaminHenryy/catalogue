@@ -28,6 +28,9 @@ INSERT INTO `films_categs` (`id_film`, `id_categorie`) VALUES ('70', '71');
 -récupérez dans la même requête tous les commentaires du film dont l'ID est 43,
  tous les champs du film 43, et tous les champs des utilisateurs ayant mis ces commentaires
 
+SELECT commentaire, user.*, film.* FROM commentaire INNER JOIN film ON film.id = commentaire.id_film INNER JOIN user ON user.id = commentaire.id_user WHERE film.id = 43
+
+
 5]
 -Supprimez le film dont le slug commence par "t"
 
@@ -37,7 +40,7 @@ DELETE FROM film WHERE slug LIKE 't%'
 -Récupérez tous les champs des utilisateurs qui ont mis des commentaires. Il ne doit pas avoir de doublons -
  un même utilisateur ne doit apparaître qu'une seule fois
 
-SELECT * FROM user
+SELECT DISTINCT * FROM user
 
 7]
 -Récupérez tous les champs des films de la catégorie dont l'ID est 51
@@ -52,6 +55,10 @@ SELECT AVG(note) FROM commentaire
 9]
 -Récupérez tous les films sortis au mois de juin
 
+SELECT * FROM film WHERE MONTH (date_sortie) = 06;
+
 10]
 -Récupérez tous les utilisateurs dont le role est 1 et qui ont postés des commentaires.
  Il ne doit pas y avoir de doublon.
+
+SELECT DISTINCT * FROM user WHERE role = 1;
